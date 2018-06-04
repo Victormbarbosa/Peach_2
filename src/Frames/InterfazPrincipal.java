@@ -50,13 +50,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     public InterfazPrincipal() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-    UIManager.put("TabbedPane.borderHightlightColor", java.awt.Color.CYAN); 
-    UIManager.put("TabbedPane.darkShadow", java.awt.Color.CYAN); 
-    UIManager.put("TabbedPane.light", java.awt.Color.CYAN);
-    UIManager.put("TabbedPane.selectHighlight", java.awt.Color.CYAN);
-    UIManager.put("TabbedPane.darkShadow", java.awt.Color.CYAN);
-    UIManager.put("TabbedPane.focus", java.awt.Color.CYAN);
+
     }
 
     public void AsigInicio() throws IOException {
@@ -102,6 +96,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         AddInfo = new rsbuttom.RSButtonMetro();
         VerPerfil = new rsbuttom.RSButtonMetro();
         NueExa = new rsbuttom.RSButtonMetro();
+        Home = new rsbuttom.RSButtonMetro();
         jPanel5 = new javax.swing.JPanel();
         rSButtonMetro1 = new rsbuttom.RSButtonMetro();
         MPanel = new javax.swing.JTabbedPane();
@@ -141,6 +136,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+        Preguntas = new rsbuttom.RSButtonMetro();
+        Temas = new rsbuttom.RSButtonMetro();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -166,7 +165,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 VerInfoActionPerformed(evt);
             }
         });
-        jPanel4.add(VerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 200, 50));
+        jPanel4.add(VerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 190, 50));
 
         AddInfo.setBackground(new java.awt.Color(255, 204, 0));
         AddInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_e738(0)_48.png"))); // NOI18N
@@ -181,7 +180,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 AddInfoActionPerformed(evt);
             }
         });
-        jPanel4.add(AddInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 200, 50));
+        jPanel4.add(AddInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 190, 50));
 
         VerPerfil.setBackground(new java.awt.Color(255, 204, 0));
         VerPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(1)_48.png"))); // NOI18N
@@ -196,7 +195,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 VerPerfilActionPerformed(evt);
             }
         });
-        jPanel4.add(VerPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 200, 50));
+        jPanel4.add(VerPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 190, 50));
 
         NueExa.setBackground(new java.awt.Color(255, 204, 0));
         NueExa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(0)_48.png"))); // NOI18N
@@ -210,9 +209,24 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 NueExaActionPerformed(evt);
             }
         });
-        jPanel4.add(NueExa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 200, 50));
+        jPanel4.add(NueExa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 190, 50));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 195, 560));
+        Home.setBackground(new java.awt.Color(255, 204, 0));
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_2302(0)_48.png"))); // NOI18N
+        Home.setText("Home");
+        Home.setColorHover(new java.awt.Color(255, 204, 102));
+        Home.setColorNormal(new java.awt.Color(255, 204, 0));
+        Home.setColorPressed(new java.awt.Color(153, 0, 153));
+        Home.setHideActionText(true);
+        Home.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+        jPanel4.add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 50));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 190, 560));
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 0));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -404,18 +418,45 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
         MPanel.addTab("tab2", jPanel7);
 
-        jPanel8.setBackground(new java.awt.Color(153, 0, 153));
+        jPanel8.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
-        );
+        Preguntas.setBackground(new java.awt.Color(255, 204, 0));
+        Preguntas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(2)_256.png"))); // NOI18N
+        Preguntas.setColorHover(new java.awt.Color(255, 255, 0));
+        Preguntas.setColorNormal(new java.awt.Color(255, 204, 0));
+        Preguntas.setColorPressed(new java.awt.Color(204, 102, 0));
+        Preguntas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PreguntasActionPerformed(evt);
+            }
+        });
+        jPanel8.add(Preguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 280, 180));
+
+        Temas.setBackground(new java.awt.Color(255, 102, 102));
+        Temas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(1)_256.png"))); // NOI18N
+        Temas.setColorHover(new java.awt.Color(255, 153, 153));
+        Temas.setColorNormal(new java.awt.Color(255, 102, 102));
+        Temas.setColorPressed(new java.awt.Color(237, 94, 94));
+        Temas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Temas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TemasActionPerformed(evt);
+            }
+        });
+        jPanel8.add(Temas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 280, 180));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Temas - Asignaturas");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 280, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Preguntas");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
 
         MPanel.addTab("tab3", jPanel8);
 
@@ -431,7 +472,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         g.setVisible(true);
         dispose();*/
         jPanel4.setVisible(false);
-        sw=false;
+        sw = false;
         try {
             AsigInicio();
         } catch (IOException ex) {
@@ -446,14 +487,14 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         g.setVisible(true);
         dispose();*/
         jPanel4.setVisible(false);
-        sw=false;
+        sw = false;
         MPanel.setSelectedIndex(2);
         // TODO add your handling code here:
     }//GEN-LAST:event_NueExaActionPerformed
 
     private void AddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInfoActionPerformed
         jPanel4.setVisible(false);
-        sw=false;
+        sw = false;
         MPanel.setSelectedIndex(3);
         /*Menu_Añadir ma = new Menu_Añadir();
         ma.setVisible(true);
@@ -629,15 +670,34 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_generarActionPerformed
 
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
-        if(sw==true){
-        jPanel4.setVisible(false);
-        sw=false;
-        }else{
-        jPanel4.setVisible(true);
-        sw=true;
+        if (sw == true) {
+            jPanel4.setVisible(false);
+            sw = false;
+        } else {
+            jPanel4.setVisible(true);
+            sw = true;
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
+
+    private void TemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TemasActionPerformed
+        Add_Asignatura_Tema ad = new Add_Asignatura_Tema();
+        ad.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TemasActionPerformed
+
+    private void PreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreguntasActionPerformed
+        AñadirInformacion ad = new AñadirInformacion();
+        ad.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PreguntasActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        jPanel4.setVisible(false);
+        sw = false;
+        MPanel.setSelectedIndex(0);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -676,8 +736,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rsbuttom.RSButtonMetro AddInfo;
+    private rsbuttom.RSButtonMetro Home;
     private javax.swing.JTabbedPane MPanel;
     private rsbuttom.RSButtonMetro NueExa;
+    private rsbuttom.RSButtonMetro Preguntas;
+    private rsbuttom.RSButtonMetro Temas;
     private rsbuttom.RSButtonMetro VerInfo;
     private rsbuttom.RSButtonMetro VerPerfil;
     private javax.swing.JComboBox<String> asign;
@@ -690,6 +753,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
