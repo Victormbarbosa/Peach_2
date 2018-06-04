@@ -218,9 +218,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         rSButtonMetro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_2630(0)_80.png"))); // NOI18N
-        rSButtonMetro1.setColorHover(new java.awt.Color(255, 102, 0));
+        rSButtonMetro1.setColorHover(new java.awt.Color(255, 127, 0));
         rSButtonMetro1.setColorNormal(new java.awt.Color(255, 102, 0));
-        rSButtonMetro1.setColorPressed(new java.awt.Color(255, 102, 0));
+        rSButtonMetro1.setColorPressed(new java.awt.Color(229, 103, 0));
         rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSButtonMetro1ActionPerformed(evt);
