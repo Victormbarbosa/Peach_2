@@ -55,6 +55,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Pregunta = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(492, 542));
@@ -66,7 +67,8 @@ public class AñadirInformacion extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Asignatura");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 28));
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 28));
 
         ComboAsignatura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
         ComboAsignatura.addActionListener(new java.awt.event.ActionListener() {
@@ -74,11 +76,12 @@ public class AñadirInformacion extends javax.swing.JFrame {
                 ComboAsignaturaActionPerformed(evt);
             }
         });
-        jPanel1.add(ComboAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 180, 36));
+        jPanel1.add(ComboAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 180, 36));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Temas");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 170, 20));
+        jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 180, 30));
 
         ComboTemas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
         ComboTemas.addActionListener(new java.awt.event.ActionListener() {
@@ -86,14 +89,15 @@ public class AñadirInformacion extends javax.swing.JFrame {
                 ComboTemasActionPerformed(evt);
             }
         });
-        jPanel1.add(ComboTemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 180, 36));
+        jPanel1.add(ComboTemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 180, 36));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Dificultad");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 160, 20));
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 180, 30));
 
         ComboDificultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "1", "2", "3" }));
-        jPanel1.add(ComboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 180, 40));
+        jPanel1.add(ComboDificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 180, 40));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Guardar");
@@ -102,15 +106,23 @@ public class AñadirInformacion extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 490, 140, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 140, 30));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         Pregunta.setViewportView(jTextArea1);
 
-        jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 450, 200));
+        jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 450, 200));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 540));
+        jButton2.setText("Atras");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 500, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,7 +137,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
         jor = (String) ComboDificultad.getSelectedItem();
         String total = jor + ";" + nom + ";";
         String temp = null;
-        String x = "Profesor/" + Asignatura + "/" + tema + "/Preguntas_"+jor+".txt";
+        String x = "Profesor/" + Asignatura + "/" + tema + "/Preguntas_" + jor + ".txt";
         if (Asignatura.equals("...")) {
             JOptionPane.showMessageDialog(null, "No ha Selccionado ninguna Asignatura.");
         } else {
@@ -144,8 +156,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
                         } catch (IOException ex) {
                             Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                        InterfazPrincipal ia = new InterfazPrincipal();
-                        ia.setVisible(true);
+
                         dispose();
                     }
                 }
@@ -174,6 +185,12 @@ public class AñadirInformacion extends javax.swing.JFrame {
     private void ComboTemasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboTemasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ComboTemasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +233,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboTemas;
     private javax.swing.JScrollPane Pregunta;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
