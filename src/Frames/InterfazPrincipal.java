@@ -6,6 +6,7 @@ import Classes.Pregunta;
 import Classes.Profesor;
 import Classes.Tema;
 import Frames.Generar_examen;
+import static Frames.Info_Examen.contador;
 import Frames.Menu_Añadir;
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,6 +28,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import javax.swing.UIManager;
 
 /*
@@ -63,7 +65,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No hay Asignaturas, deberia agregar alguna.");
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -98,7 +100,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         NueExa = new rsbuttom.RSButtonMetro();
         Home = new rsbuttom.RSButtonMetro();
         jPanel5 = new javax.swing.JPanel();
+        rSButtonMetro4 = new rsbuttom.RSButtonMetro();
         rSButtonMetro1 = new rsbuttom.RSButtonMetro();
+        rSButtonMetro5 = new rsbuttom.RSButtonMetro();
+        rSButtonMetro6 = new rsbuttom.RSButtonMetro();
         MPanel = new javax.swing.JTabbedPane();
         jPanel10 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -121,20 +126,15 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         nombre = new javax.swing.JTextField();
         materia = new javax.swing.JTextField();
         evaluacion = new javax.swing.JTextField();
-        fecha = new javax.swing.JTextField();
-        nivpr = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
-        preg = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        temas = new javax.swing.JComboBox<>();
-        asignatura1 = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        generar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        fecha = new com.toedter.calendar.JDateChooser();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        generar = new javax.swing.JButton();
+        Npreg = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         Preguntas = new rsbuttom.RSButtonMetro();
         Temas = new rsbuttom.RSButtonMetro();
@@ -148,7 +148,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(124, 7, 100));
+        jPanel4.setBackground(new java.awt.Color(153, 0, 102));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -165,7 +165,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 VerInfoActionPerformed(evt);
             }
         });
-        jPanel4.add(VerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 190, 50));
+        jPanel4.add(VerInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 250, 190, 50));
 
         AddInfo.setBackground(new java.awt.Color(255, 204, 0));
         AddInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_e738(0)_48.png"))); // NOI18N
@@ -180,7 +180,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 AddInfoActionPerformed(evt);
             }
         });
-        jPanel4.add(AddInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 190, 50));
+        jPanel4.add(AddInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 190, 50));
 
         VerPerfil.setBackground(new java.awt.Color(255, 204, 0));
         VerPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(1)_48.png"))); // NOI18N
@@ -195,7 +195,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 VerPerfilActionPerformed(evt);
             }
         });
-        jPanel4.add(VerPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 190, 50));
+        jPanel4.add(VerPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 190, 50));
 
         NueExa.setBackground(new java.awt.Color(255, 204, 0));
         NueExa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(0)_48.png"))); // NOI18N
@@ -209,7 +209,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 NueExaActionPerformed(evt);
             }
         });
-        jPanel4.add(NueExa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 220, 190, 50));
+        jPanel4.add(NueExa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 190, 50));
 
         Home.setBackground(new java.awt.Color(255, 204, 0));
         Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_2302(0)_48.png"))); // NOI18N
@@ -224,37 +224,69 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 HomeActionPerformed(evt);
             }
         });
-        jPanel4.add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 50));
+        jPanel4.add(Home, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 190, 50));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 190, 560));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 190, 570));
 
         jPanel5.setBackground(new java.awt.Color(255, 102, 0));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        rSButtonMetro4.setColorHover(new java.awt.Color(255, 153, 102));
+        rSButtonMetro4.setColorNormal(new java.awt.Color(255, 102, 0));
+        rSButtonMetro4.setColorPressed(new java.awt.Color(249, 112, 0));
+        rSButtonMetro4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro4ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(rSButtonMetro4, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 60, -1));
+
         rSButtonMetro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_2630(0)_80.png"))); // NOI18N
-        rSButtonMetro1.setColorHover(new java.awt.Color(255, 127, 0));
+        rSButtonMetro1.setColorHover(new java.awt.Color(255, 153, 102));
         rSButtonMetro1.setColorNormal(new java.awt.Color(255, 102, 0));
-        rSButtonMetro1.setColorPressed(new java.awt.Color(229, 103, 0));
+        rSButtonMetro1.setColorPressed(new java.awt.Color(249, 112, 0));
         rSButtonMetro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rSButtonMetro1ActionPerformed(evt);
             }
         });
-        jPanel5.add(rSButtonMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 64, 52));
+        jPanel5.add(rSButtonMetro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 50, 40));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 50));
+        rSButtonMetro5.setColorHover(new java.awt.Color(255, 153, 102));
+        rSButtonMetro5.setColorNormal(new java.awt.Color(255, 102, 0));
+        rSButtonMetro5.setColorPressed(new java.awt.Color(249, 112, 0));
+        rSButtonMetro5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro5ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(rSButtonMetro5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, 60, -1));
+
+        rSButtonMetro6.setColorHover(new java.awt.Color(244, 0, 0));
+        rSButtonMetro6.setColorNormal(new java.awt.Color(255, 102, 0));
+        rSButtonMetro6.setColorPressed(new java.awt.Color(255, 102, 102));
+        rSButtonMetro6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rSButtonMetro6ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(rSButtonMetro6, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 0, 60, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 40));
 
         MPanel.setBackground(new java.awt.Color(255, 51, 51));
+
+        jPanel10.setBackground(new java.awt.Color(255, 153, 102));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 965, Short.MAX_VALUE)
+            .addGap(0, 795, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGap(0, 580, Short.MAX_VALUE)
         );
 
         MPanel.addTab("tab4", jPanel10);
@@ -270,23 +302,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 verAsignaturaActionPerformed(evt);
             }
         });
-        jPanel6.add(verAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 130, -1));
+        jPanel6.add(verAsignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, 130, -1));
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Asignatura");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 150, -1));
+        jPanel6.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 150, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel6.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 170, 240));
+        jPanel6.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 170, 240));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Temas");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 150, -1));
+        jPanel6.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, 150, -1));
 
         verTemas.setBackground(new java.awt.Color(255, 255, 255));
         verTemas.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
@@ -296,13 +328,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 verTemasActionPerformed(evt);
             }
         });
-        jPanel6.add(verTemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 490, 150, -1));
+        jPanel6.add(verTemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, 150, -1));
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Preguntas");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 150, -1));
+        jPanel6.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 300, 150, -1));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -315,7 +347,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         });
         jPanel3.add(asignatura, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 150, -1));
 
-        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 170, 240));
+        jPanel6.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 170, 240));
 
         asign.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
         asign.addActionListener(new java.awt.event.ActionListener() {
@@ -323,10 +355,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 asignActionPerformed(evt);
             }
         });
-        jPanel6.add(asign, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 330, 140, -1));
+        jPanel6.add(asign, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 140, -1));
 
         tema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "..." }));
-        jPanel6.add(tema, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 380, 140, -1));
+        jPanel6.add(tema, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, 140, -1));
 
         dificultad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "...", "1", "2", "3" }));
         dificultad.addActionListener(new java.awt.event.ActionListener() {
@@ -334,7 +366,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 dificultadActionPerformed(evt);
             }
         });
-        jPanel6.add(dificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 140, -1));
+        jPanel6.add(dificultad, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 440, 140, -1));
 
         verPreguntas.setBackground(new java.awt.Color(255, 255, 255));
         verPreguntas.setFont(new java.awt.Font("Lucida Sans", 0, 12)); // NOI18N
@@ -344,57 +376,49 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 verPreguntasActionPerformed(evt);
             }
         });
-        jPanel6.add(verPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 490, 140, -1));
+        jPanel6.add(verPreguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 500, 140, -1));
 
         ver.setColumns(20);
         ver.setRows(5);
         jScrollPane1.setViewportView(ver);
 
-        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 630, 186));
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 630, 186));
 
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel6.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 280, 170, 240));
+        jPanel6.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 170, 240));
 
         MPanel.addTab("tab1", jPanel6);
 
-        jPanel7.setBackground(new java.awt.Color(255, 153, 102));
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel7.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, 200, -1));
-        jPanel7.add(materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 200, -1));
-        jPanel7.add(evaluacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, 200, -1));
-        jPanel7.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, 200, -1));
+        jPanel7.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 200, -1));
+        jPanel7.add(materia, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 200, -1));
+        jPanel7.add(evaluacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, 200, -1));
 
-        nivpr.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jPanel7.add(nivpr, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 350, 200, -1));
+        jLabel4.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel4.setText("Asignatura:");
+        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 120, -1));
 
-        jLabel8.setText("Nivel de dificultad:");
-        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
+        jLabel9.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel9.setText("Fecha:");
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 110, -1));
 
-        preg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jPanel7.add(preg, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 310, 200, -1));
+        jLabel10.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel10.setText("Evaluacion:");
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 110, -1));
 
+        jLabel11.setForeground(new java.awt.Color(255, 153, 51));
+        jLabel11.setText("Nombre del Profesor:");
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 140, -1));
+
+        fecha.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 200, -1));
+
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setForeground(new java.awt.Color(255, 153, 51));
         jLabel7.setText("Numero de preguntas:");
-        jPanel7.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, -1, -1));
-
-        temas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                temasActionPerformed(evt);
-            }
-        });
-        jPanel7.add(temas, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, 200, -1));
-
-        asignatura1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                asignatura1ActionPerformed(evt);
-            }
-        });
-        jPanel7.add(asignatura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 200, -1));
-
-        jLabel6.setText("Asignatura");
-        jPanel7.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 230, -1, -1));
-
-        jLabel5.setText("Tema");
-        jPanel7.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, -1));
+        jPanel11.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
         generar.setText("Generar Examen");
         generar.addActionListener(new java.awt.event.ActionListener() {
@@ -402,19 +426,10 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 generarActionPerformed(evt);
             }
         });
-        jPanel7.add(generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 420, 246, 48));
+        jPanel11.add(generar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 246, 48));
+        jPanel11.add(Npreg, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 290, 200, -1));
 
-        jLabel4.setText("Asignatura:");
-        jPanel7.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 120, -1));
-
-        jLabel9.setText("Fecha:");
-        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 110, -1));
-
-        jLabel10.setText("Evaluacion:");
-        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, 110, -1));
-
-        jLabel11.setText("Nombre del Profesor:");
-        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, 110, -1));
+        jPanel7.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 460, 570));
 
         MPanel.addTab("tab2", jPanel7);
 
@@ -431,7 +446,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 PreguntasActionPerformed(evt);
             }
         });
-        jPanel8.add(Preguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 280, 180));
+        jPanel8.add(Preguntas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 280, 180));
 
         Temas.setBackground(new java.awt.Color(255, 102, 102));
         Temas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Entypo_d83d(1)_256.png"))); // NOI18N
@@ -444,23 +459,23 @@ public class InterfazPrincipal extends javax.swing.JFrame {
                 TemasActionPerformed(evt);
             }
         });
-        jPanel8.add(Temas, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 280, 180));
+        jPanel8.add(Temas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 280, 180));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Temas - Asignaturas");
         jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 280, 30));
+        jPanel8.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 170, 280, 30));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Preguntas");
         jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 280, 30));
+        jPanel8.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 280, 30));
 
         MPanel.addTab("tab3", jPanel8);
 
-        jPanel1.add(MPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 970, 600));
+        jPanel1.add(MPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 800, 610));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 610));
 
@@ -471,8 +486,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         /*Ver_Preguntas g = new Ver_Preguntas();
         g.setVisible(true);
         dispose();*/
-        jPanel4.setVisible(false);
-        sw = false;
+ /*jPanel4.setVisible(false);
+       sw = false;*/
         try {
             AsigInicio();
         } catch (IOException ex) {
@@ -486,15 +501,15 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         /*Generar_examen g = new Generar_examen();
         g.setVisible(true);
         dispose();*/
-        jPanel4.setVisible(false);
-        sw = false;
+ /*jPanel4.setVisible(false);
+       sw = false;*/
         MPanel.setSelectedIndex(2);
         // TODO add your handling code here:
     }//GEN-LAST:event_NueExaActionPerformed
 
     private void AddInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddInfoActionPerformed
-        jPanel4.setVisible(false);
-        sw = false;
+        /*jPanel4.setVisible(false);
+       sw = false;*/
         MPanel.setSelectedIndex(3);
         /*Menu_Añadir ma = new Menu_Añadir();
         ma.setVisible(true);
@@ -537,7 +552,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }            // TODO add your handling code here:
     }//GEN-LAST:event_asignActionPerformed
 
@@ -556,26 +571,15 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_verPreguntasActionPerformed
 
-    private void temasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temasActionPerformed
-        // TODO add your handling code here:
-        String nombre = (String) asignatura.getSelectedItem();
-
-    }//GEN-LAST:event_temasActionPerformed
-
-    private void asignatura1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignatura1ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_asignatura1ActionPerformed
-
     private void generarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarActionPerformed
         // TODO add your handling code here:
         String titulo = "Examen de " + materia.getText();
         String nom = "Nombre del profesor: " + nombre.getText();
         String mat = "Asignatura: " + materia.getText();
         String ev = "Evaluacion: " + evaluacion.getText();
-        String fec = "Fecha: " + fecha.getText();
-        String numero = (String) preg.getSelectedItem();
-        int num = Integer.parseInt(numero);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String fec = "Fecha: " + dateFormat.format(fecha.getDate());
+
         //        String nivel = (String) nivpr.getSelectedItem();
         //        String x = (String) asignatura.getSelectedItem();
         //        String y = (String) temas.getSelectedItem();
@@ -583,7 +587,6 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         //        temp = getPreguntasNivel(x, y, nivel);
         //        int size = temp.size();
         //        boolean a = true;
-
         XWPFDocument documento = new XWPFDocument();
 
         //Declaramos el titulo y le asignamos algunas propiedades
@@ -603,7 +606,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         r1.setUnderline(UnderlinePatterns.SINGLE);
 
         //Para el parrafo
-        /* XWPFRun r2 = parrafo.createRun();
+        XWPFRun r2 = parrafo.createRun();
         r2.setText(nom);
         r2.setFontSize(12);
         r2.addCarriageReturn();
@@ -622,30 +625,22 @@ public class InterfazPrincipal extends javax.swing.JFrame {
         r5.setText(fec);
         r5.setFontSize(12);
         r5.addCarriageReturn();
+        int i = 1;
+        int NumePreg = Integer.parseInt(Npreg.getText());
 
-        String preg = "¿Por que la gallina cruzo el camino?";
-        XWPFRun r6 = parrafo.createRun();
-        r6.setText("1. " + preg);
-        r6.setFontSize(12);
-        r6.addCarriageReturn();*/
-        String Salir = "No";
-        int i = 0;
-        while ("No".equals(Salir)) {
-            i++;
-            String preg = "" + i;
-            XWPFRun r6 = parrafo.createRun();
-            r6.setText("1. " + preg);
-            r6.setFontSize(12);
-            r6.addCarriageReturn();
-            Salir = JOptionPane.showInputDialog(null, "Desea terminar si o no?");
-
-        }
-        if (num == 2) {
-            String preg1 = "¿Que vino primero el huevo o la gallina?";
-            XWPFRun r7 = parrafo.createRun();
-            r7.setText("2. " + preg1);
-            r7.setFontSize(12);
-            r7.addCarriageReturn();
+        while (i <= NumePreg) {
+           
+                i++;
+                Info_Examen ie = new Info_Examen();
+                ie.setVisible(true);
+                String preg3 = "" + i;
+                XWPFRun r7 = parrafo.createRun();
+                r7.setText("1." + preg3);
+                r7.setFontSize(12);
+                r7.addCarriageReturn();
+                
+            JOptionPane.showMessageDialog(null, "Hola");
+            contador = false;
         }
 
         FileOutputStream word = null;
@@ -670,13 +665,13 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_generarActionPerformed
 
     private void rSButtonMetro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro1ActionPerformed
-        if (sw == true) {
+        /*if (sw == true) {
             jPanel4.setVisible(false);
             sw = false;
         } else {
             jPanel4.setVisible(true);
             sw = true;
-        }
+        }*/
         // TODO add your handling code here:
     }//GEN-LAST:event_rSButtonMetro1ActionPerformed
 
@@ -687,17 +682,29 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_TemasActionPerformed
 
     private void PreguntasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreguntasActionPerformed
-        AñadirInformacion ad = new AñadirInformacion();
+        Añadir_Preguntas ad = new Añadir_Preguntas();
         ad.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_PreguntasActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        jPanel4.setVisible(false);
-        sw = false;
+        /*jPanel4.setVisible(false);
+       sw = false;*/
         MPanel.setSelectedIndex(0);
         // TODO add your handling code here:
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void rSButtonMetro4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonMetro4ActionPerformed
+
+    private void rSButtonMetro5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonMetro5ActionPerformed
+
+    private void rSButtonMetro6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rSButtonMetro6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rSButtonMetro6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -738,6 +745,7 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private rsbuttom.RSButtonMetro AddInfo;
     private rsbuttom.RSButtonMetro Home;
     private javax.swing.JTabbedPane MPanel;
+    private javax.swing.JTextField Npreg;
     private rsbuttom.RSButtonMetro NueExa;
     private rsbuttom.RSButtonMetro Preguntas;
     private rsbuttom.RSButtonMetro Temas;
@@ -745,10 +753,9 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private rsbuttom.RSButtonMetro VerPerfil;
     private javax.swing.JComboBox<String> asign;
     private javax.swing.JComboBox<String> asignatura;
-    private javax.swing.JComboBox<String> asignatura1;
     private javax.swing.JComboBox<String> dificultad;
     private javax.swing.JTextField evaluacion;
-    private javax.swing.JTextField fecha;
+    private com.toedter.calendar.JDateChooser fecha;
     private javax.swing.JButton generar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -758,13 +765,11 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -775,12 +780,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField materia;
-    private javax.swing.JComboBox<String> nivpr;
     private javax.swing.JTextField nombre;
-    private javax.swing.JComboBox<String> preg;
     private rsbuttom.RSButtonMetro rSButtonMetro1;
+    private rsbuttom.RSButtonMetro rSButtonMetro4;
+    private rsbuttom.RSButtonMetro rSButtonMetro5;
+    private rsbuttom.RSButtonMetro rSButtonMetro6;
     private javax.swing.JComboBox<String> tema;
-    private javax.swing.JComboBox<String> temas;
     private javax.swing.JTextArea ver;
     private javax.swing.JButton verAsignatura;
     private javax.swing.JButton verPreguntas;

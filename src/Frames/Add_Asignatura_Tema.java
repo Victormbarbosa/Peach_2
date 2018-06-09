@@ -40,7 +40,7 @@ public class Add_Asignatura_Tema extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No hay Asignaturas, deberia agregar alguna.");
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -208,7 +208,7 @@ public class Add_Asignatura_Tema extends javax.swing.JFrame {
                 File fichero = new File("Profesor/" + Asig + "/Temas.txt");
                 fichero.createNewFile();
             } catch (IOException ex) {
-                Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             JOptionPane.showMessageDialog(null, "No ha escrito un nombre para la asignatura.");
@@ -234,7 +234,7 @@ public class Add_Asignatura_Tema extends javax.swing.JFrame {
             File f3 = new File("Profesor/" + r + "/" + tema + "/Preguntas_3.txt");
             f3.createNewFile();
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
          
         // TODO add your handling code here:

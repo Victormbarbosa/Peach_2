@@ -21,12 +21,12 @@ import Classes.Metodos;
  *
  * @author Usuario
  */
-public class AñadirInformacion extends javax.swing.JFrame {
+public class Añadir_Preguntas extends javax.swing.JFrame {
 
     /**
      * Creates new form AñadirInformacion
      */
-    public AñadirInformacion() {
+    public Añadir_Preguntas() {
         initComponents();
         this.setLocationRelativeTo(null);
         Metodos e = new Metodos();
@@ -37,7 +37,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No hay Asignaturas, deberia agregar alguna.");
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -53,9 +53,9 @@ public class AñadirInformacion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         ComboDificultad = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        Pregunta = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Pregunta = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(492, 542));
@@ -108,12 +108,6 @@ public class AñadirInformacion extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, 140, 30));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        Pregunta.setViewportView(jTextArea1);
-
-        jPanel1.add(Pregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 450, 200));
-
         jButton2.setText("Atras");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +115,12 @@ public class AñadirInformacion extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        Pregunta.setColumns(20);
+        Pregunta.setRows(5);
+        jScrollPane1.setViewportView(Pregunta);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 470, 200));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 500, 590));
 
@@ -132,10 +132,12 @@ public class AñadirInformacion extends javax.swing.JFrame {
         String Asignatura = (String) ComboAsignatura.getSelectedItem();
         String tema = (String) ComboTemas.getSelectedItem();
         Metodos e = new Metodos();
-        String nom, jor;
-        nom = Pregunta.getToolTipText();
+        String nom, jor, estado;
+        nom = Pregunta.getText();
+        System.out.println(""+nom);
         jor = (String) ComboDificultad.getSelectedItem();
-        String total = jor + ";" + nom + ";";
+        estado = "Disponible";
+        String total = jor + ";" + nom + ";"+ estado + ";"+ "--------" + ";";// 8 guiones hay ahi
         String temp = null;
         String x = "Profesor/" + Asignatura + "/" + tema + "/Preguntas_" + jor + ".txt";
         if (Asignatura.equals("...")) {
@@ -154,7 +156,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
                             temp = e.concatenar(x);
                             e.guardar(temp, x, total);
                         } catch (IOException ex) {
-                            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+                            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
                         }
 
                         dispose();
@@ -178,7 +180,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_ComboAsignaturaActionPerformed
 
@@ -188,7 +190,7 @@ public class AñadirInformacion extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-
+        
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -209,20 +211,21 @@ public class AñadirInformacion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AñadirInformacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Añadir_Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AñadirInformacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Añadir_Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AñadirInformacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Añadir_Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AñadirInformacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Añadir_Preguntas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AñadirInformacion().setVisible(true);
+                new Añadir_Preguntas().setVisible(true);
             }
         });
     }
@@ -231,13 +234,13 @@ public class AñadirInformacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboAsignatura;
     private javax.swing.JComboBox<String> ComboDificultad;
     private javax.swing.JComboBox<String> ComboTemas;
-    private javax.swing.JScrollPane Pregunta;
+    private javax.swing.JTextArea Pregunta;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

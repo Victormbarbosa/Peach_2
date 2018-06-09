@@ -47,7 +47,7 @@ public class Ver_Preguntas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No hay Asignaturas, deberia agregar alguna.");
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -264,7 +264,7 @@ public class Ver_Preguntas extends javax.swing.JFrame {
 
             }
         } catch (IOException ex) {
-            Logger.getLogger(AñadirInformacion.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Añadir_Preguntas.class.getName()).log(Level.SEVERE, null, ex);
         }            // TODO add your handling code here:
     }//GEN-LAST:event_asignActionPerformed
 

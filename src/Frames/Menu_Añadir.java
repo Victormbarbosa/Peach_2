@@ -110,7 +110,7 @@ public class Menu_Añadir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AñadirInformacion ad = new AñadirInformacion();
+        Añadir_Preguntas ad = new Añadir_Preguntas();
         ad.setVisible(true);
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
